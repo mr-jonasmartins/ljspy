@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - Sistema LJS{% endblock %}
+{% block content %}
+<h2>Dashboard</h2>
+<p>Bem-vindo, {{ user.firstname }} {{ user.lastname }}</p>
+
+<a href="{{ url_for('submit') }}">Nova Submissão</a>
+
+<h3>Minhas Submissões</h3>
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Seção</th>
+      <th>Status</th>
+      <th>Data</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in submissions %}
+    <tr>
+      <td><a href="{{ url_for('article', article_id=s.id) }}">{{ s.title }}</a></td>
+      <td>{{ s.section_title or 'N/A' }}</td>
+      <td>{{ s.status }}</td>
+      <td>{{ s.submissiondate or '' }}</td>
+      <td>
+        <a href="{{ url_for('edit_submission', submission_id=s.id) }}">Editar</a>
+      </td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="5">Nenhuma submissão encontrada.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

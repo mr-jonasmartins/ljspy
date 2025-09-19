@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Página Inicial - Sistema LJS{% endblock %}
+{% block content %}
+<h2>Edição Atual</h2>
+{% if current_issue %}
+  <p><strong>Volume:</strong> {{ current_issue.volume }}, <strong>Número:</strong> {{ current_issue.number }}, <strong>Ano:</strong> {{ current_issue.year }}</p>
+{% else %}
+  <p>Sem edição atual publicada.</p>
+{% endif %}
+
+<h2>Artigos Recentes</h2>
+<ul>
+  {% for article in recent_articles %}
+  <li>
+    <a href="{{ url_for('article', article_id=article.id) }}">{{ article.title }}</a> - {{ article.section_title }}<br>
+    Autor: {{ article.firstname }} {{ article.lastname }} | Publicado em: {{ article.publisheddate }}
+  </li>
+  {% else %}
+  <li>Nenhum artigo publicado recentemente.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

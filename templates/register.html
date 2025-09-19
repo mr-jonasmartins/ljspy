@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Registrar - Sistema LJS{% endblock %}
+{% block content %}
+<h2>Registrar</h2>
+<form method="post">
+  <label for="firstname">Nome:</label>
+  <input type="text" id="firstname" name="firstname" required>
+  <br>
+  <label for="lastname">Sobrenome:</label>
+  <input type="text" id="lastname" name="lastname" required>
+  <br>
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required>
+  <br>
+  <label for="affiliation">Filiação:</label>
+  <input type="text" id="affiliation" name="affiliation">
+  <br>
+  <label for="country">País:</label>
+  <input type="text" id="country" name="country">
+  <br>
+  <label for="password">Senha:</label>
+  <input type="password" id="password" name="password" required>
+  <br>
+  <label for="confirmpassword">Confirme a Senha:</label>
+  <input type="password" id="confirmpassword" name="confirmpassword" required>
+  <br>
+  <button type="submit">Registrar</button>
+</form>
+<p>Já tem conta? <a href="{{ url_for('login') }}">Entre aqui</a></p>
+{% endblock %}

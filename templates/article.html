@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title }} - Sistema LJS{% endblock %}
+{% block content %}
+<h2>{{ article.title }}</h2>
+<p><strong>Autor:</strong> {{ article.firstname }} {{ article.lastname }}</p>
+<p><strong>Filiação:</strong> {{ article.affiliation }}</p>
+<p><strong>ORCID:</strong> {{ article.orcid }}</p>
+<p><strong>Seção:</strong> {{ article.section_title }}</p>
+<p><strong>Publicado em:</strong> {{ article.publisheddate }}</p>
+<hr>
+<p>{{ article.abstract }}</p>
+{% endblock %}

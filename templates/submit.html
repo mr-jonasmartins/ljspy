@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}
+{% if submission %}Editar Submissão{% else %}Nova Submissão{% endif %} - Sistema LJS
+{% endblock %}
+{% block content %}
+<h2>{% if submission %}Editar Submissão{% else %}Nova Submissão{% endif %}</h2>
+
+<form method="post" enctype="multipart/form-data">
+
+  <label for="title">Título:</label><br>
+  <input type="text" id="title" name="title" required
+      value="{{ submission.title if submission else '' }}"><br><br>
+
+  <label for="abstract">Resumo:</label><br>
+  <textarea id="abstract" name="abstract" required rows="5" cols="60">{{ submission.abstract if submission else '' }}</textarea><br><br>
+
+  <label for="keywords">Palavras-chave:</label><br>
+  <input type="text" id="keywords" name="keywords" required
+      value="{{ submission.keywords if submission else '' }}"><br><br>
+
+  <label for="language">Idioma:</label><br>
+  <input type="text" id="language" name="language" required
+      value="{{ submission.language if submission else '' }}"><br><br>
+
+  <label for="sectionid">Seção:</label><br>
+  <select id="sectionid" name="sectionid" required>
+    <option value="">Selecione</option>
+    {% for section in sections %}
+      <option value="{{ section.id }}"
+        {% if submission and submission.sectionid == section.id %}selected{% endif %}>
+        {{ section.title }}
+      </option>
+    {% endfor %}
+  </select><br><br>
+
+  <label for="file">{% if submission %}Alterar Arquivo{% else %}Arquivo{% endif %}:</label><br>
+  <input type="file" id="file" name="file" accept=".pdf,.doc,.docx,.txt"><br><br>
+
+  <label for="coauthors">Coautores (emails separados por vírgula):</label><br>
+  <input type="text" id="coauthors" name="coauthors" value="{{ coauthors if coauthors else '' }}"><br><br>
+
+  <button type="submit">{% if submission %}Atualizar{% else %}Enviar{% endif %}</button>
+
+</form>
+{% endblock %}
